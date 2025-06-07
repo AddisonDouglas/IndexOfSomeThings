@@ -1,4 +1,0 @@
-cargo new my_project     # Creates a new Rust project
-cargo build              # Compiles the project
-cargo run                # Builds and runs the project
-cargo check              # Checks for errors, no binary built
