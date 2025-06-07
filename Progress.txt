@@ -1,0 +1,83 @@
+Search Engine - Development Log
+    Project Overview
+        You are building a custom search engine from scratch in Rust, called Moogle. The project includes:
+
+        A low-level HTTP web server (written from scratch using TCP sockets)
+
+        A web crawler (spider) to collect web pages
+
+        An indexer to build a searchable inverted index
+
+        A query engine to return relevant results
+
+        A minimal web interface for user interaction
+
+        All core components are implemented manually, without frameworks or high-level libraries.
+
+    What Has Been Done
+        Web Server Setup
+            Created a TCP-based HTTP server in Rust using TcpListener
+
+            Successfully parsed incoming HTTP requests using BufReader
+
+            Responded to GET / by serving a static HTML file (index.html) from a static/ directory
+
+            Built a valid HTTP response manually, including status line and Content-Length
+
+        Search Route Handling
+            Added basic routing logic to distinguish between / and /search paths
+
+            Extracted query parameters from URLs such as /search?q=test
+
+            Returned mock HTML search results to the browser
+
+            Validated the response cycle end-to-end: request -> route -> response
+
+    What You Are Doing
+        You are currently finalizing the basic web routing for:
+
+            Serving index.html at /
+
+            Extracting and displaying the search query from /search?q=...
+
+            Returning different HTML content based on request path
+
+            Preparing the server to transition from mock responses to real index lookups
+
+        This establishes the foundation for integrating the indexing and spider modules.
+
+    What’s Next
+        1. Web Crawler (Spider)
+            Start from a seed URL and perform BFS-based crawling
+
+            Normalize URLs and avoid repeated visits
+
+            Save HTML pages locally for processing
+
+        2. Indexer
+            Parse saved HTML files and extract visible text
+
+            Tokenize and normalize the text
+
+            Build an inverted index: map words to document IDs and counts
+
+        3. Query Processor
+            Load the inverted index into memory
+
+            Match user query terms to indexed documents
+
+            Return ranked search results based on frequency or simple scoring
+
+        4. Integration
+            Hook up query results to /search?q=... route
+
+            Return real results (titles, snippets, URLs) instead of mock entries
+
+            Improve result formatting in HTML
+
+        5. Stretch Goals (Optional)
+            Add TF-IDF or PageRank scoring
+
+            Support multi-term queries and basic ranking
+
+            Implement concurrent spidering or persistent index storage
